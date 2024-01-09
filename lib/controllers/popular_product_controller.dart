@@ -33,10 +33,10 @@ class PopularProductController extends GetxController {
   void setQuality(bool isIncrement) {
     if (isIncrement) {
       _quantity = checkQuantity(_quantity + 1);
-      print("number of items = $_quantity");
+      // print("number of items = $_quantity");
     } else {
       _quantity = checkQuantity(_quantity - 1);
-      print("number of items = $_quantity");
+      // print("number of items = $_quantity");
     }
     update();
   }

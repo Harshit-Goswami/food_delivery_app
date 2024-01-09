@@ -75,7 +75,7 @@ class CartPage extends StatelessWidget {
                                 Get.find<PopularProductController>()
                                     .popularProductList
                                     .indexOf(_cartList[index].product!);
-
+    
                             if (popularIndex >= 0) {
                               Get.toNamed(RouteHelper.getPopularFood(
                                   popularIndex, 'cart_page'));
@@ -92,13 +92,14 @@ class CartPage extends StatelessWidget {
                             width: Dimensions.width20 * 5,
                             height: Dimensions.height20 * 5,
                             decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.circular(Dimensions.radius20),
+                                borderRadius: BorderRadius.circular(
+                                    Dimensions.radius20),
                                 color: Colors.white,
                                 image: DecorationImage(
-                                    image: NetworkImage(AppConstants.BASE_URL +
-                                        AppConstants.UPLOAD_URL +
-                                        _cartList[index].img!),
+                                    image: NetworkImage(
+                                        AppConstants.BASE_URL +
+                                            AppConstants.UPLOAD_URL +
+                                            _cartList[index].img!),
                                     fit: BoxFit.cover)),
                           ),
                         ),
@@ -139,7 +140,8 @@ class CartPage extends StatelessWidget {
                                           onPressed: () {
                                             cartController.addItem(
                                                 _cartList[index].product!,
-                                                _cartList[index].quantity! - 1);
+                                                _cartList[index].quantity! -
+                                                    1);
                                           },
                                         ),
                                         SizedBox(
@@ -158,7 +160,8 @@ class CartPage extends StatelessWidget {
                                           onPressed: () {
                                             cartController.addItem(
                                                 _cartList[index].product!,
-                                                _cartList[index].quantity! + 1);
+                                                _cartList[index].quantity! +
+                                                    1);
                                           },
                                         )
                                       ],
@@ -183,7 +186,8 @@ class CartPage extends StatelessWidget {
           return Container(
             height: Dimensions.bottomHeight,
             padding: EdgeInsets.symmetric(
-                vertical: Dimensions.height20, horizontal: Dimensions.height20),
+                vertical: Dimensions.height20,
+                horizontal: Dimensions.height20),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(Dimensions.radius20 * 2),
@@ -195,7 +199,8 @@ class CartPage extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.all(Dimensions.height20),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                      borderRadius:
+                          BorderRadius.circular(Dimensions.radius20),
                       color: Colors.white),
                   child: Row(
                     children: [
@@ -210,7 +215,9 @@ class CartPage extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    cartController.addToHistory();
+                  },
                   child: Container(
                     padding: EdgeInsets.symmetric(
                         vertical: Dimensions.height15,

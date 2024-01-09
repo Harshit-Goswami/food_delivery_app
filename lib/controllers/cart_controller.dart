@@ -10,9 +10,11 @@ class CartController extends GetxController {
 
   CartController({required this.cartRepo});
 
-  final Map<int, CartModal> _items = {};
+  Map<int, CartModal> _items = {};
 
   Map<int, CartModal> get items => _items;
+
+  List<CartModal> storageItems = [];
 
   void addItem(ProductModal product, int quantity) {
     if (_items.containsKey(product.id)) {
@@ -91,5 +93,32 @@ class CartController extends GetxController {
       total += value.quantity! * value.price!;
     });
     return total;
+  }
+
+  List<CartModal> getCartData() {
+    setCart = cartRepo.getCartList();
+    return storageItems;
+  }
+
+  set setCart(List<CartModal> items) {
+    storageItems = items;
+    // print("length of cart items "+storageItems.length.toString());
+    for (int i = 0; i < storageItems.length; i++) {
+      _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
+    }
+  }
+
+  void addToHistory() {
+    cartRepo.addToCartHistoryList();
+    clear();
+  }
+
+  void clear() {
+    _items = {};
+    update();
+  }
+
+  List<CartModal> getCartHistoryList() {
+    return cartRepo.getCartHistoryList();
   }
 }

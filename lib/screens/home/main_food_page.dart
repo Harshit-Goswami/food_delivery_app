@@ -18,7 +18,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
   Widget build(BuildContext context) {
     // print(Dimensions.screenHeight);
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.grey.shade50,
       body: Column(children: [
         //* showing the header
         Container(

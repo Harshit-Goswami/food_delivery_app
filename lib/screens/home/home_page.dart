@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/screens/cart/cart_history.dart';
 import 'package:food_delivery_app/screens/home/main_food_page.dart';
 import 'package:food_delivery_app/utils/app_colors.dart';
 
@@ -18,9 +19,7 @@ class _HomePageState extends State<HomePage> {
     Container(
       child: Text('Next page'),
     ),
-    Container(
-      child: Text('Next nextpage'),
-    ),
+    const CartHistory(),
     Container(
       child: Text('Next net nextpage'),
     ),
@@ -56,12 +55,13 @@ class _HomePageState extends State<HomePage> {
           ]),
     );
   }
- 
+
   @override
   void initState() {
     // _controller = PersistentTabController(initialIndex: 0);
     super.initState();
-  }}
+  }
+}
  /*  List<Widget> _buildScreens() {
     return [
       MainFoodPage(),

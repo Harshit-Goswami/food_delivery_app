@@ -11,12 +11,16 @@ class CartRepo {
   List<String> cart = [];
   List<String> cartHistory = [];
 
-  void addToCart(List<CartModal> cartList) {
+  void addToCartList(List<CartModal> cartList) {
     // sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
     // sharedPreferences.remove(AppConstants.CART_LIST);
+    // return;
     var time = DateTime.now().toString();
 
     cart = [];
+    // for (var element in cartList) {
+    //   continue;
+    // }
     cartList.forEach((element) {
       element.time = time;
       return cart.add(jsonEncode(element));
@@ -27,10 +31,10 @@ class CartRepo {
   }
 
   List<CartModal> getCartList() {
-    List<String> carts = [];
+    // List<String> carts = [];
     if (sharedPreferences.containsKey(AppConstants.CART_LIST)) {
       cart = sharedPreferences.getStringList(AppConstants.CART_LIST)!;
-      print("inside getCartList" + cart.toString());
+      print("inside getCartList $cart");
     }
     List<CartModal> cartList = [];
     cart.forEach(
@@ -64,11 +68,11 @@ class CartRepo {
     removeCart();
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
-    print("the length of the history list is " +
-        getCartHistoryList().length.toString());
+    print("the length of the history list is ${getCartHistoryList().length}");
 
-    for (int j =0; j < getCartHistoryList().length; j++) {
-      print(" $j time for the order is " + getCartHistoryList()[j].time!.toString());
+    for (int j = 0; j < getCartHistoryList().length; j++) {
+      print(" $j time for the order is " +
+          getCartHistoryList()[j].time!.toString());
     }
   }
 

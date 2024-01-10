@@ -50,7 +50,7 @@ class CartController extends GetxController {
             backgroundColor: AppColors.mainColor, colorText: Colors.white);
       }
     }
-    cartRepo.addToCart(getItems);
+    cartRepo.addToCartList(getItems);
     update();
   }
 
@@ -120,5 +120,15 @@ class CartController extends GetxController {
 
   List<CartModal> getCartHistoryList() {
     return cartRepo.getCartHistoryList();
+  }
+
+  set setItems(Map<int, CartModal> setItems) {
+    _items = {};
+    _items = setItems;
+  }
+
+  void addToCartList() {
+    cartRepo.addToCartList(getItems);
+    update();
   }
 }

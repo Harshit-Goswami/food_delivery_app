@@ -3,6 +3,9 @@ import 'package:food_delivery_app/screens/cart/cart_history.dart';
 import 'package:food_delivery_app/screens/home/main_food_page.dart';
 import 'package:food_delivery_app/utils/app_colors.dart';
 
+import '../account/account_page.dart';
+import '../auth/sign_up_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -16,13 +19,9 @@ class _HomePageState extends State<HomePage> {
 
   List pages = [
     const MainFoodPage(),
-    Container(
-      child: Text('Next page'),
-    ),
+    const SignUpPage(),
     const CartHistory(),
-    Container(
-      child: Text('Next net nextpage'),
-    ),
+    const AccountPage(),
   ];
 
   void onTapNav(int index) {

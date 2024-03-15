@@ -1,17 +1,19 @@
-
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/utils/app_colors.dart';
 import 'package:food_delivery_app/utils/dimensions.dart';
 
 class AppTextField extends StatelessWidget {
-   const AppTextField({
-    super.key, required this.textController, required this.hintText, required this.icon,
-  });
+  AppTextField(
+      {super.key,
+      required this.textController,
+      required this.hintText,
+      required this.icon,
+      this.isObscure = false});
 
   final TextEditingController textController;
   final String hintText;
   final IconData icon;
-
+  bool isObscure;
 
   @override
   Widget build(BuildContext context) {
@@ -29,21 +31,20 @@ class AppTextField extends StatelessWidget {
                 spreadRadius: 7)
           ]),
       child: TextField(
+        obscureText: isObscure,
         controller: textController,
         decoration: InputDecoration(
           hintText: hintText,
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(Dimensions.radius30),
-              borderSide:
-                  const BorderSide(width: 1, color: Colors.white)),
-          prefixIcon:  Icon(
+              borderSide: const BorderSide(width: 1, color: Colors.white)),
+          prefixIcon: Icon(
             icon,
             color: AppColors.yellowColor,
           ),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(Dimensions.radius30),
-              borderSide:
-                  const BorderSide(width: 1, color: Colors.white)),
+              borderSide: const BorderSide(width: 1, color: Colors.white)),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(Dimensions.radius30),
             // borderSide: BorderSide(width: 1, color: Colors.white)

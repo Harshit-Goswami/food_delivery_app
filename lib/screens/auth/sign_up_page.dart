@@ -51,12 +51,13 @@ class SignUpPage extends StatelessWidget {
             name: name, phone: phone, email: email, password: password);
         authController.registration(signUpBody).then((status) {
           if (status.isSuccess) {
-            print("registration Success");
+            Get.snackbar("Success", "Registration Successful",
+                backgroundColor: Colors.green, colorText: Colors.white);
           } else {
             showCustomSnackBar(status.message);
           }
         });
-        print(signUpBody.toString());
+        // print(signUpBody.toString());
       }
     }
 
@@ -96,6 +97,7 @@ class SignUpPage extends StatelessWidget {
                         textController: passwordController,
                         icon: Icons.password,
                         hintText: "Password",
+                        isObscure: true,
                       ),
                       SizedBox(
                         height: Dimensions.height20,

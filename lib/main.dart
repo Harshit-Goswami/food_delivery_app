@@ -28,12 +28,11 @@ class MyApp extends StatelessWidget {
         return GetBuilder<RecommendedProductController>(
           builder: (_) {
             return GetMaterialApp(
-              
               title: 'Food delivery',
               debugShowCheckedModeBanner: false,
-              home: const SignInPage(),
-              // initialRoute: RouteHelper.getSplashScreen(),
-              // getPages: RouteHelper.routes,
+              // home: const SignInPage(),
+              initialRoute: RouteHelper.getSplashScreen(),
+              getPages: RouteHelper.routes,
             );
           },
         );

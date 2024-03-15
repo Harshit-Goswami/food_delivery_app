@@ -15,9 +15,31 @@ class AuthRepo {
         AppConstants.REGISTRATION_URI, signUpBody.toJson());
   }
 
-  saveUserToken(String token) async {
+  Future<Response> login(String phone, String password) async {
+    return await apiClient.postData(
+        AppConstants.LOGIN_URI, {"phone": phone, "password": password});
+  }
+
+  Future<String> getUserToken() async {
+    return await sharedPreferences.getString(AppConstants.TOKEN) ?? "None";
+  }
+
+  bool userLoggedIn() {
+    return sharedPreferences.containsKey(AppConstants.TOKEN);
+  }
+
+  Future<bool> saveUserToken(String token) async {
     apiClient.token = token;
     apiClient.updateHeader(token);
     return await sharedPreferences.setString(AppConstants.TOKEN, token);
+  }
+
+  Future<void> saveUserNumberAndPassword(String number, String password) async {
+    try {
+      await sharedPreferences.setString(AppConstants.PHONE, number);
+      await sharedPreferences.setString(AppConstants.PASSWORD, password);
+    } catch (e) {
+      throw e;
+    }
   }
 }

@@ -18,6 +18,7 @@ class AuthController extends GetxController implements GetxService {
     late ResponseModal responseModal;
     if (response.statusCode == 200) {
       authRepo.saveUserToken(response.body["token"]);
+      print("token = ${response.body['token']}");
       responseModal = ResponseModal(true, response.body['token']);
     } else {
       responseModal = ResponseModal(false, response.statusText!);
@@ -25,5 +26,30 @@ class AuthController extends GetxController implements GetxService {
     _isLoading = false;
     update();
     return responseModal;
+  }
+
+  Future<ResponseModal> login(String phone, String password) async {
+    _isLoading = true;
+    update();
+    Response response = await authRepo.login(phone, password);
+    late ResponseModal responseModal;
+    if (response.statusCode == 200) {
+      authRepo.saveUserToken(response.body["token"]);
+      print("token = ${response.body['token']}");
+      responseModal = ResponseModal(true, response.body['token']);
+    } else {
+      responseModal = ResponseModal(false, response.statusText!);
+    }
+    _isLoading = false;
+    update();
+    return responseModal;
+  }
+
+  void saveUserNumberAndPassword(String number, String password) async {
+    authRepo.saveUserNumberAndPassword(number, password);
+  }
+
+  bool userLoggedIn() {
+    return authRepo.userLoggedIn();
   }
 }

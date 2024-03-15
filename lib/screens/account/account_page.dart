@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:food_delivery_app/controllers/auth_controller.dart';
+import 'package:food_delivery_app/controllers/cart_controller.dart';
+import 'package:food_delivery_app/routes/route_helper.dart';
 import 'package:food_delivery_app/utils/app_colors.dart';
 import 'package:food_delivery_app/utils/dimensions.dart';
 import 'package:food_delivery_app/widgets/account_widget.dart';
 import 'package:food_delivery_app/widgets/app_icon.dart';
 import 'package:food_delivery_app/widgets/big_text.dart';
+import 'package:get/get.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
@@ -105,6 +110,27 @@ class AccountPage extends StatelessWidget {
                           size: Dimensions.height10 * 5,
                         ),
                         bigText: BigText(text: "Messages")),
+
+                    //! logout
+                    GestureDetector(
+                      onTap: () {
+                        if (Get.find<AuthController>().userLoggedIn()) {
+                          Get.find<AuthController>().clearSharedData();
+                          Get.find<CartController>().clearCartHisotry();
+                          Get.find<CartController>().clear();
+                          Get.offNamed(RouteHelper.getSignInPage());
+                        }
+                      },
+                      child: AccountWidget(
+                          appIcon: AppIcon(
+                            icon: Icons.logout,
+                            backgroundColor: Colors.redAccent,
+                            iconColor: Colors.white,
+                            iconSize: (Dimensions.height10 * 5) / 2,
+                            size: Dimensions.height10 * 5,
+                          ),
+                          bigText: BigText(text: "Log Out")),
+                    ),
                   ],
                 ),
               ),
